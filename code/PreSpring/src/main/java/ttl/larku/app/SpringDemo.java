@@ -1,8 +1,10 @@
 package ttl.larku.app;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ttl.larku.domain.Student;
+import ttl.larku.jconfig.LarkUConfig;
 import ttl.larku.service.StudentService;
 
 import javax.swing.Spring;
@@ -19,9 +21,12 @@ public class SpringDemo {
     }
 
     public void go() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        //ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ApplicationContext context = new AnnotationConfigApplicationContext(LarkUConfig.class);
 
         StudentService ss = context.getBean("studentService", StudentService.class);
+
+        StudentService s2 = context.getBean("studentService", StudentService.class);
 
         List<Student> students = ss.getAllStudents();
         System.out.println("allStudent.size: " + students.size());
