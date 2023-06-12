@@ -6,9 +6,8 @@ public class Student {
         FULL_TIME,
         PART_TIME,
         HIBERNATING
-    }
+    };
 
-    ;
 
     private int id;
     private String name;

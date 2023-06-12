@@ -1,5 +1,6 @@
 package ttl.larku.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.dao.inmemory.InMemoryStudentDAO;
 import ttl.larku.domain.Student;
@@ -16,7 +17,8 @@ public class StudentService {
     private BaseDAO<Student> studentDAO;
 
     public StudentService() {
-        studentDAO = new InMemoryStudentDAO();
+        int i = 0;
+//        studentDAO = new InMemoryStudentDAO();
     }
 
     public Student createStudent(String name, String phoneNumber, Status status) {
@@ -55,6 +57,7 @@ public class StudentService {
         return studentDAO;
     }
 
+    //studentDAO
     public void setStudentDAO(BaseDAO<Student> studentDAO) {
         this.studentDAO = studentDAO;
     }
