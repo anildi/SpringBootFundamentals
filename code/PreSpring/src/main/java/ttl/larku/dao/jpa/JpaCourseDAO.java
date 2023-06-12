@@ -5,9 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Course;
 
+@Repository
+//@Qualifier("blah")
 public class JpaCourseDAO implements BaseDAO<Course> {
 
     private Map<Integer, Course> courses = new HashMap<Integer, Course>();

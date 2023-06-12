@@ -1,5 +1,6 @@
 package ttl.larku.dao.inmemory;
 
+import org.springframework.stereotype.Component;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Student;
 
