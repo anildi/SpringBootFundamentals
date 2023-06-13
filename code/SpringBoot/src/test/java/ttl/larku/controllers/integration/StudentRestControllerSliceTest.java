@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = {StudentRestController.class, CourseRestController.class })
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
-@Tag("integration")
+@Tag("mvcslice")
 public class StudentRestControllerSliceTest {
 
     @MockBean
