@@ -66,20 +66,12 @@ public class StudentRestControllerSliceTest {
     private final int badStudentId = 10000;
 
 
+    List<Student> students = Arrays.asList(new Student("Manoj", "282 929 9292", Student.Status.FULL_TIME),
+            new Student("Alice", "393 9393 030", Student.Status.HIBERNATING));
     @BeforeEach
     public void setup() {
         int count = context.getBeanDefinitionCount();
         System.out.println("Bean count = " + count);
-
-        List<Student> students = Arrays.asList(new Student("Manoj", "282 929 9292", Student.Status.FULL_TIME),
-                new Student("Alice", "393 9393 030", Student.Status.HIBERNATING));
-        //Create a mock for the one controller we want to test.
-
-        Mockito.when(studentService.getAllStudents()).thenReturn(students);
-        Mockito.when(studentService.getStudent(goodStudentId)).thenReturn(students.get(0));
-        Mockito.when(studentService.getStudent(badStudentId)).thenReturn(null);
-        Student student = new Student("Yogita");
-        Mockito.when(studentService.createStudent(any(Student.class))).thenReturn(student);
     }
 
     @Test
@@ -87,6 +79,7 @@ public class StudentRestControllerSliceTest {
         MediaType accept = MediaType.APPLICATION_JSON;
         MediaType contentType = accept;
 
+        Mockito.when(studentService.getStudent(goodStudentId)).thenReturn(students.get(0));
         MockHttpServletRequestBuilder builder = get("/adminrest/student/{id}", goodStudentId)
                 .accept(accept)
                 .contentType(contentType);
@@ -111,6 +104,7 @@ public class StudentRestControllerSliceTest {
     @Test
     public void testGetOneStudentBadId() throws Exception {
 
+        Mockito.when(studentService.getStudent(badStudentId)).thenReturn(null);
         ResultActions actions = mockMvc
                 .perform(get("/adminrest/student/{id}", badStudentId)
                         .accept(MediaType.APPLICATION_JSON));
@@ -134,6 +128,8 @@ public class StudentRestControllerSliceTest {
         student.setPhoneNumber("202 383-9393");
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(student);
+
+        Mockito.when(studentService.createStudent(any(Student.class))).thenReturn(student);
 
         ResultActions actions = mockMvc.perform(post("/adminrest/student/").accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON).content(jsonString));
@@ -195,6 +191,7 @@ public class StudentRestControllerSliceTest {
     @Test
     public void testGetAllStudentsGood() throws Exception {
 
+        Mockito.when(studentService.getAllStudents()).thenReturn(students);
         ResultActions actions = mockMvc.perform(get("/adminrest/student/").accept(MediaType.APPLICATION_JSON));
 
         actions = actions.andExpect(status().isOk());

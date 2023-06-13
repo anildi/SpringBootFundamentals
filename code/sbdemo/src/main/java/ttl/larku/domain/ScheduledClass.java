@@ -1,5 +1,11 @@
 package ttl.larku.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,15 +14,15 @@ public class ScheduledClass {
 
     private int id;
 
-//    @JsonIgnore
+    @JsonIgnore
     private List<Student> students = new ArrayList<Student>();
 
-//    @JsonDeserialize(using = LocalDateDeserializer.class)
-//    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate startDate;
 
-//    @JsonDeserialize(using = LocalDateDeserializer.class)
-//    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate endDate;
 
 
@@ -45,12 +51,12 @@ public class ScheduledClass {
         this.id = id;
     }
 
-//    @JsonIgnore
+    @JsonIgnore
     public List<Student> getStudents() {
         return students;
     }
 
-//    @JsonIgnore
+    @JsonIgnore
     public void setStudents(List<Student> students) {
         this.students = students;
     }
