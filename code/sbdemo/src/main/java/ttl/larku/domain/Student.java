@@ -6,12 +6,19 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
+@Entity
 public class Student {
 
     public enum Status {
@@ -20,6 +27,8 @@ public class Student {
         HIBERNATING
     };
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
@@ -30,9 +39,10 @@ public class Student {
     @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dob;
 
+    @Enumerated(EnumType.STRING)
     private Status status = Status.FULL_TIME;
 
-    private List<ScheduledClass> classes;
+//    private List<ScheduledClass> classes;
 
     private static int nextId = 0;
 
@@ -59,7 +69,7 @@ public class Student {
         this.status = status;
         this.phoneNumber = phoneNumber;
         this.dob = dob;
-        this.classes = classes;
+//        this.classes = classes;
     }
 
     public int getId() {
@@ -109,22 +119,22 @@ public class Student {
     }
 
 
-    public List<ScheduledClass> getClasses() {
-        return classes;
-    }
-
-    public void setClasses(List<ScheduledClass> classes) {
-        this.classes = classes;
-    }
-
-
-    public void addClass(ScheduledClass sClass) {
-        classes.add(sClass);
-    }
-
-    public void dropClass(ScheduledClass sClass) {
-        classes.remove(sClass);
-    }
+//    public List<ScheduledClass> getClasses() {
+//        return classes;
+//    }
+//
+//    public void setClasses(List<ScheduledClass> classes) {
+//        this.classes = classes;
+//    }
+//
+//
+//    public void addClass(ScheduledClass sClass) {
+//        classes.add(sClass);
+//    }
+//
+//    public void dropClass(ScheduledClass sClass) {
+//        classes.remove(sClass);
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -147,7 +157,7 @@ public class Student {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", dob=" + dob +
                 ", status=" + status +
-                ", classes=" + classes +
+//                ", classes=" + classes +
                 '}';
     }
 }
