@@ -1,4 +1,4 @@
-package ttl.larku.controllers.integration;
+package ttl.larku.controllers.integration.slice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
@@ -21,10 +21,13 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import ttl.larku.controllers.rest.CourseRestController;
+import ttl.larku.controllers.rest.RegistrationRestController;
 import ttl.larku.controllers.rest.StudentRestController;
 import ttl.larku.controllers.rest.UriCreator;
 import ttl.larku.domain.Student;
+import ttl.larku.service.ClassService;
 import ttl.larku.service.CourseService;
+import ttl.larku.service.RegistrationService;
 import ttl.larku.service.StudentService;
 
 import java.util.Arrays;
@@ -41,8 +44,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@WebMvcTest(controllers = {StudentRestController.class})
-//@WebMvcTest(controllers = {StudentRestController.class, CourseRestController.class})
+//@WebMvcTest(controllers = {StudentRestController.class})
+@WebMvcTest(controllers = {RegistrationRestController.class, StudentRestController.class, CourseRestController.class})
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @Tag("mvcslice")
@@ -51,8 +54,14 @@ public class StudentRestControllerSliceTest {
     @MockBean
     private StudentService studentService;
 
-//    @MockBean
-//    private CourseService courseService;
+    @MockBean
+    private CourseService courseService;
+
+    @MockBean
+    private RegistrationService registrationService;
+
+    @MockBean
+    private ClassService classService;
 
     @MockBean
     private UriCreator uriCreator;
