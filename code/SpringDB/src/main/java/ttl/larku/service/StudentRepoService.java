@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import ttl.larku.dao.repository.StudentRepo;
 import ttl.larku.domain.Student;
 import ttl.larku.domain.Student.Status;
@@ -85,6 +86,22 @@ public class StudentRepoService implements StudentService {
     public List<Student> getByName(String name) {
         String lc = name.toLowerCase();
         List<Student> result = studentDAO.findByNameIgnoreCaseContains(name);
+        return result;
+    }
+
+    //This one is to test for LazyInstantionException on the Service.
+    //To make that happen, comment out the @Transactional on the StudentService.
+    //This makes the Transaction start and commit in the DAO instead of
+    //the service.  So a call to student.getClasses().size() throws
+    //the LIE.
+    @Override
+    public String getStudentNameAndClassSize(int id) {
+        Student student = studentDAO.findById(id).orElse(null);
+        String result = "No Student with id: " + id;
+        if(student != null) {
+            result = student.getName() + ": " + student.getClasses().size();
+        }
+
         return result;
     }
 

@@ -83,6 +83,12 @@ public class StudentRepoServiceTest {
 
         students.forEach(System.out::println);
 
+
+
+        //This will throw LIE
+        //students.forEach(s -> System.out.println(s + ": class size" + s.getClasses().size()));
+
+
         assertEquals(9, students.size());
     }
 
@@ -132,5 +138,12 @@ public class StudentRepoServiceTest {
 
         assertEquals(10, studentService.getAllStudents().size());
         assertEquals(name2, studentService.getStudent(student1.getId()).getName());
+    }
+
+    @Test
+    public void testGetStudentNameAndClassSize() {
+        String result = studentService.getStudentNameAndClassSize(1);
+
+        System.out.println("result: " + result);
     }
 }

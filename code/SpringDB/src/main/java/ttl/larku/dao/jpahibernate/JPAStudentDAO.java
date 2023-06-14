@@ -34,8 +34,13 @@ public class JPAStudentDAO implements BaseDAO<Student> {
     @Override
     public boolean delete(Student objToDelete) {
         Student managed = entityManager.find(Student.class, objToDelete.getId());
-        //errors will throw Exception.  See javadoc for remove.
+//        //errors will throw Exception.  See javadoc for remove.
         entityManager.remove(managed);
+
+        //If you don't make it managed before deleting, then you
+        //can get a "Removing a detached instance" Exception if
+        //the given student is not managed.
+//        entityManager.remove(objToDelete);
         return true;
     }
 

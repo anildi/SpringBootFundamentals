@@ -53,8 +53,10 @@ public class StudentDAOTest {
 	public void testGetAll() {
 //		List<Student> students = dao.getAll();
 		List<Student> students = dao.getAllForLIE();
-		//This will show the n + 1 problem.  Will do 5 selects instead of 1
-//		students.forEach(s -> System.out.println("Class size for : " + s.getId() + ": " + s.getClasses().size()));
+		//With @Transactional, this will show the n + 1 problem.
+		//Will do 5 selects instead of 1.
+		//With no @Transactional, this will throw a LazyInstantiationException.
+		students.forEach(s -> System.out.println("Class size for : " + s.getId() + ": " + s.getClasses().size()));
 		assertEquals(4, students.size());
 	}
 

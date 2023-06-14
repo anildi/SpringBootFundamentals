@@ -29,5 +29,12 @@ public interface StudentService {
 
     List<Student> getByName(String name);
 
+    //This one is to test for LazyInstantionException on the Service.
+    //To make that happen, comment out the @Transactional on this class.
+    //This makes the Transaction start and commit in the DAO instead of
+    //the service.  So a call to student.getClasses().size() throws
+    //the LIE.
+    String getStudentNameAndClassSize(int id);
+
     void clear();
 }

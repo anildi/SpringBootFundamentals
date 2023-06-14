@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 //@DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 
 //Or you can just re-run the sql files before each test method
-@Sql(scripts = { "/ttl/larku/db/createDB-h2.sql", "/ttl/larku/db/populateDB-h2.sql" }, executionPhase= Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = {"/ttl/larku/db/createDB-h2.sql", "/ttl/larku/db/populateDB-h2.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 
 //This next one will roll back the transaction after
 //each test, so the database will actually stay the
@@ -71,10 +71,33 @@ public class StudentRepoTest {
     }
 
     @Test
+    public void testGetOneStudent() {
+        Student student = studentRepo.bigSelectOne(1);
+
+        System.out.println("bigSelect: " + student + ", classes: " + student.getClasses());
+
+        assertEquals(1, student.getClasses().size());
+    }
+
+    @Test
+    //Turn off Transactions by uncommenting @Transactional
+    //If you then try and print the collection, you will
+    //get a Lazy Instantiation Exception.
+    @Transactional
     public void testGetAll() {
+        //Also check out the definition of findAll in the StudentRepo.
+        //You can set it up there with a custom query to do a
+        //left join fetch.  In which case you will not get
+        //either an LIE or the n + 1 selects.
         List<Student> students = studentRepo.findAll();
+        //With @Transactional, this will show the n + 1 problem.
+        //Will do 5 selects instead of 1.
+        //With no @Transactional, this will throw a LazyInstantiationException.
+        students.forEach(s -> System.out.println("classes size for " + s.getName() + " is " + s.getClasses().size()));
+
         assertEquals(4, students.size());
     }
+
 
     @Test
     public void testCreate() {
@@ -148,11 +171,11 @@ public class StudentRepoTest {
             totalElements += page.getNumberOfElements();
             System.out.println("Number: " + page.getNumber() + ", numElements: " + page.getNumberOfElements());
             page.forEach(System.out::println);
-        }while(page.hasNext());
+        } while (page.hasNext());
 
         assertEquals(54, totalElements);
         assertEquals(2, page.getNumber());
-        }
+    }
 
     @Test
     public void testProjectionPhoneSummaryById() {

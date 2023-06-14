@@ -34,7 +34,7 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
     //with the left join fetch.
     //The @Override signifies that we are overriding a built-in method.
 	@Override
-    @Query("select distinct s from Student s left join fetch s.classes sc left join fetch sc.course")
+//    @Query("select distinct s from Student s left join fetch s.classes sc left join fetch sc.course")
     public List<Student> findAll();
 
     public Student bigSelectOne(@Param("id") int id);

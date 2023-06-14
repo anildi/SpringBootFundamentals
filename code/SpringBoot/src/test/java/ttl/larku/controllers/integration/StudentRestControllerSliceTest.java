@@ -72,6 +72,7 @@ public class StudentRestControllerSliceTest {
     public void setup() {
         int count = context.getBeanDefinitionCount();
         System.out.println("Bean count = " + count);
+
     }
 
     @Test

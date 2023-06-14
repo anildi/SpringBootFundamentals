@@ -150,8 +150,15 @@ public class StudentRestController {
      *
      * The other is to apply an @Valid annotation to the Student argument.  This will
      * make Spring automatically do the validation before it calls this function.
-     * If the validation fails, Spring will throw a MethodArgumentNotValidException.
+     * If the validation fails, Spring will do one of the following:
+     * - if this function declares an Errors argument, it will
+     *   call this function with the Errors argument containing the errors.
+     *   In this case you check for and handle errors yourself.
+     *  - If this function does *not* have an Errors argument, then
+     *    Spring will throw a MethodArgumentNotValidException on Validation
+     *    failure.
      * You can catch that exception in a @RestControllerAdvice class.
+     *
      * See ttl.larku.exceptions.GlobalErrorHandler for an example of @RestControllerAdvice.
      * If you do not catch the Exception, then the user gets a default error response.
      *
