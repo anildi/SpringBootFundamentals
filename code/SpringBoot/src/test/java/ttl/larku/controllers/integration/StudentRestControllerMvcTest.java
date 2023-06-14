@@ -64,6 +64,8 @@ public class StudentRestControllerMvcTest {
         //This code assumes that we are using an InMemoryStudentDAO.
 //        studentService.clear();
 //        testData.initStudentDAO(studentService.getStudentDAO());
+
+        System.out.println("Bean count: " + context.getBeanDefinitionCount());
     }
 
     @Test

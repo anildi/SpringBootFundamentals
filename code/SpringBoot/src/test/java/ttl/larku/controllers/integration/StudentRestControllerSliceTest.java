@@ -41,7 +41,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@WebMvcTest(controllers = {StudentRestController.class, CourseRestController.class })
+@WebMvcTest(controllers = {StudentRestController.class})
+//@WebMvcTest(controllers = {StudentRestController.class, CourseRestController.class})
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @Tag("mvcslice")
@@ -50,8 +51,8 @@ public class StudentRestControllerSliceTest {
     @MockBean
     private StudentService studentService;
 
-    @MockBean
-    private CourseService courseService;
+//    @MockBean
+//    private CourseService courseService;
 
     @MockBean
     private UriCreator uriCreator;
@@ -81,6 +82,7 @@ public class StudentRestControllerSliceTest {
         MediaType contentType = accept;
 
         Mockito.when(studentService.getStudent(goodStudentId)).thenReturn(students.get(0));
+
         MockHttpServletRequestBuilder builder = get("/adminrest/student/{id}", goodStudentId)
                 .accept(accept)
                 .contentType(contentType);

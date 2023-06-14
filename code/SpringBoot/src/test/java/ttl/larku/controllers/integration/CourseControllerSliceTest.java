@@ -48,15 +48,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-//@WebMvcTest(controllers = CourseRestController.class)
-@WebMvcTest(controllers = {StudentRestController.class, CourseRestController.class })
+@WebMvcTest(controllers = CourseRestController.class)
+//@WebMvcTest(controllers = {StudentRestController.class, CourseRestController.class })
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @Tag("mvcslice")
 public class CourseControllerSliceTest {
 
-    @MockBean
-    private StudentService studentService;
+//    @MockBean
+//    private StudentService studentService;
 
     @MockBean
     private CourseService courseService;
@@ -89,6 +89,7 @@ public class CourseControllerSliceTest {
     public void testGetOneCourseGoodJson() throws Exception {
         int goodId = 1;
         Mockito.when(courseService.getCourse(goodId)).thenReturn(courses.get(0));
+
         MediaType accept = MediaType.APPLICATION_JSON;
         MediaType contentType = accept;
 

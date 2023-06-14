@@ -32,7 +32,7 @@ public class TrackControllerTest {
     public void init() { }
 
     @Test
-    public void testGetAllStudents() throws Exception {
+    public void testGetAllTracks() throws Exception {
 
         //Done - - Initialize ResultActions with the result of a mockMvc call to get one track
         //     - Look at the main line projects for examples
