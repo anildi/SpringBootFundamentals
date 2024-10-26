@@ -1,0 +1,37 @@
+#*******************************Hibernate DDL *******************************
+#Does Hibernate generate the DDL (false for no)
+#spring.jpa.generate-ddl=true
+spring.jpa.generate-ddl=false
+#If Hibernate, then a further switch is
+# available to customize how Hibernate works
+#spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.hibernate.ddl-auto=none
+#*******************************End Hibernate DDL *******************************
+
+#*******************************Data Sources*******************************
+
+#Derby datasource
+derbydb.datasource.url=jdbc:derby://localhost/LarkUDB;create=true
+derbydb.datasource.username=larku
+derbydb.datasource.password=larku
+derbydb.datasource.driver-class-name=org.apache.derby.jdbc.ClientDriver
+derbydb.datasource.platform=org.hibernate.dialect.DerbyTenSevenDialect
+#spring.jpa.database-platform=org.hibernate.dialect.DerbyTenSevenDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.DerbyTenSevenDialect
+
+#H2
+h2.datasource.url=jdbc:h2:mem:LarkUDB
+h2.datasource.username=larku
+h2.datasource.password=larku
+h2.datasource.driver-class-name=org.h2.Driver
+h2.datasource.platform=org.hibernate.dialect.H2Dialect
+
+#Mariadb
+mysqldb.datasource.url=jdbc:mariadb://localhost:3306/larku
+mysqldb.datasource.username=larku
+mysqldb.datasource.password=larku
+mysqldb.datasource.driver-class-name=org.mariadb.jdbc.Driver
+mysqldb.datasource.platform=org.hibernate.dialect.MariaDB103Dialect
+mysqldb.datasource.configuration.maximum-pool-size=10
+
+#*******************************End Data Sources*******************************

@@ -1,0 +1,65 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="LarkUPU_SE" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>ttl.larku.domain.Student</class>
+        <class>ttl.larku.domain.ScheduledClass</class>
+        <class>ttl.larku.domain.Course</class>
+
+        <properties>
+<!--            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>-->
+<!--            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost/LarkUDB;create=true"/>-->
+            <!--            <property name="javax.persistence.jdbc.user" value="larku"/>-->
+            <!--            <property name="javax.persistence.jdbc.password" value="larku"/>-->
+<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.Derby10Dialect"/>-->
+
+                        <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+                        <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/larku"/>
+                        <property name="javax.persistence.jdbc.user" value="larku"/>
+                        <property name="javax.persistence.jdbc.password" value="larku"/>
+                        <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDB103Dialect"/>
+
+            <!--            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>-->
+            <!--            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:LarkUDB"/>-->
+            <!--            <property name="javax.persistence.jdbc.user" value="larku"/>-->
+            <!--            <property name="javax.persistence.jdbc.password" value="larku"/>-->
+            <!--            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>-->
+
+
+<!--            <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- This sets up how hibernate will map entities to tables.  Look in application.properties
+            for more info and an alternatives.  This is necessary because otherwise for an SE application
+            Hibernate assumes a PhysicalNamingStrategy which doesn't sync up with the tables/columns that this
+            strategy produces.
+            -->
+            <!--            <property name="hibernate.physical_naming_strategy" value="org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy"/>-->
+            <property name="hibernate.physical_naming_strategy"
+                      value="org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl"/>
+
+
+            <!--
+            <property name="javax.persistence.schema-generation.database.action"
+                value="drop-and-create" />
+            <property name="javax.persistence.schema-generation.create-source"
+                value="script" />
+            <property name="javax.persistence.schema-generation.create-script-source"
+                value="META-INF/createDB.sql" />
+            <property name="javax.persistence.schema-generation.drop-source"
+                value="metadata" />
+            <property name="javax.persistence.sql-load-script-source"
+                value="META-INF/populateDB.sql" />
+            -->
+
+        </properties>
+
+    </persistence-unit>
+</persistence>

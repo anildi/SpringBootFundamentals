@@ -1,0 +1,16 @@
+All software and other material in these directories is
+Copyright (c) 2019-2022 Anil Pal
+
+All rights reserved by
+    The Third Lane, LLC
+    thethirdlane at panix dot com
+
+If you are using this material for learning purposes, I hope you
+find it useful.
+
+If you want to use it for teaching, please get in touch with me.
+
+All material here is solely for instructional purposes, and is provided
+very explicitly "as is", without a warranty of any kind.
+
+In other words, don't use anything here to drive a nuclear submarine.
