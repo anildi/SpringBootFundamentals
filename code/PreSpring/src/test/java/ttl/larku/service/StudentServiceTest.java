@@ -2,12 +2,21 @@ package ttl.larku.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ttl.larku.LarkUConfig;
 import ttl.larku.domain.Student;
 import ttl.larku.domain.Student.Status;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {LarkUConfig.class})
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class StudentServiceTest {
 
     private String name1 = "Bloke";
@@ -16,11 +25,12 @@ public class StudentServiceTest {
     private String phoneNumber1 = "290 298 4790";
     private String phoneNumber2 = "3838 939 93939";
 
+    @Autowired
     private StudentService studentService;
 
     @BeforeEach
     public void setup() {
-        studentService = new StudentService();
+//        studentService = new StudentService();
     }
 
     @Test

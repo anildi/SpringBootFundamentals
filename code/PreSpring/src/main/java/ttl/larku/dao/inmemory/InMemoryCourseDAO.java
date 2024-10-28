@@ -5,13 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Course;
 
+//@Component
+@Repository
+@Primary
 public class InMemoryCourseDAO implements BaseDAO<Course> {
 
     private Map<Integer, Course> courses = new HashMap<Integer, Course>();
     private static int nextId = 0;
+
+    public InMemoryCourseDAO() {
+        int stop = 0;
+    }
 
     public void update(Course updateObject) {
         if (courses.containsKey(updateObject.getId())) {
