@@ -11,31 +11,34 @@ public class RegistrationApp {
 
     int value;
 
+    private StudentService ss = new StudentService();
     public static void main(String[] args) {
         RegistrationApp ra = new RegistrationApp();
         //ra.primeAndPrintBoth();
         ra.postRequestToAddAStudent();
+
         ra.getRequestForAllStudents();
     }
 
 
     public void postRequestToAddAStudent() {
-        StudentService ss = new StudentService();
         ss.createStudent("New One", "282 484 9944", Student.Status.FULL_TIME);
 
         List<Student> students = ss.getAllStudents();
+        System.out.println("numStudents: " + students.size());
         students.forEach(System.out::println);
     }
 
     public void getRequestForAllStudents() {
-        StudentService ss = new StudentService();
+//        StudentService ss = new StudentService();
         List<Student> students = ss.getAllStudents();
-        System.out.println("All Students: " + students.size());
+
+        System.out.println("Get Request: " + students.size());
         students.forEach(System.out::println);
     }
 
-    public static void primeAndPrintBoth() {
-        StudentService ss = new StudentService();
+    public void primeAndPrintBoth() {
+//        StudentService ss = new StudentService();
         init(ss);
         List<Student> students = ss.getAllStudents();
         students.forEach(System.out::println);
@@ -47,7 +50,7 @@ public class RegistrationApp {
 
     }
 
-    public static void init(StudentService ss) {
+    public void init(StudentService ss) {
         ss.createStudent("Manoj", "282 939 9944", Student.Status.FULL_TIME);
         ss.createStudent("Charlene", "282 898 2145", Student.Status.FULL_TIME);
         ss.createStudent("Firoze", "228 678 8765", Student.Status.HIBERNATING);
