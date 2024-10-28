@@ -19,13 +19,13 @@ public class RegistrationApp {
     public static void main(String[] args) {
         //primeAndPrintBoth();
         postRequestToAddAStudent();
-        getRequestForAllStudents();
+//        getRequestForAllStudents();
     }
 
 
     public static void postRequestToAddAStudent() {
         logger.info("Boo");
-        //StudentService ss = new StudentService();
+//        StudentService ss = new StudentService();
         StudentService ss = MyFactory.studentService();
         ss.createStudent("New One", "282 484 9944", Student.Status.FULL_TIME);
 
