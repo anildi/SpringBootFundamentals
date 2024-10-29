@@ -1,5 +1,6 @@
 package ttl.larku;
 
+import java.time.LocalDate;
 import java.util.List;
 import javax.sound.midi.Track;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,7 @@ import org.springframework.stereotype.Component;
 import ttl.larku.domain.Student;
 import ttl.larku.service.StudentService;
 
-@SpringBootApplication //(scanBasePackages = {"ttl.larku", "org.ttl"})
-//@Configuration
-//@ComponentScan
-//@EnableAutoConfiguration
+@SpringBootApplication
 public class SbdemoApplication {
 
    public static void main(String[] args) {
@@ -27,11 +25,22 @@ public class SbdemoApplication {
 @Component
 class MyRunner implements CommandLineRunner {
 
-   @Autowired
-   private StudentService studentService;
+   private final StudentService studentService;
+
+   public MyRunner(StudentService studentService) {
+      this.studentService = studentService;
+   }
 
    @Override
    public void run(String... args) throws Exception {
+      List<Student> input = List.of(
+            new Student("Joe", "383 922 922922", LocalDate.of(1987, 10, 10), Student.Status.FULL_TIME),
+            new Student("Roshan", "37849-09328 922922", LocalDate.of(1991, 10, 10), Student.Status.FULL_TIME),
+            new Student("Samay", "4757891922 922922", LocalDate.of(2000, 10, 10), Student.Status.HIBERNATING)
+      );
+
+      input.forEach(studentService::createStudent);
+
       System.out.println("Boo");
       List<Student> students = studentService.getAllStudents();
       System.out.println("size: " + students.size());

@@ -1,0 +1,51 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+
+    <persistence-unit name="LarkUPU_SE" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+        <class>ttl.Student</class>
+        <class>ttl.ScheduledClass</class>
+        <class>ttl.Course</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost/LarkUDB;create=true"/>
+            <property name="javax.persistence.jdbc.user" value="larku"/>
+            <property name="javax.persistence.jdbc.password" value="larku"/>
+
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
+
+            <!-- <property name="hibernate.hbm2ddl.auto" value="create"/> -->
+
+            <!--
+            <property name="javax.persistence.schema-generation.database.action"
+                value="drop-and-create" />
+            <property name="javax.persistence.schema-generation.create-source"
+                value="script" />
+            <property name="javax.persistence.schema-generation.create-script-source"
+                value="META-INF/createDB.sql" />
+            <property name="javax.persistence.schema-generation.drop-source"
+                value="metadata" />
+            <property name="javax.persistence.sql-load-script-source"
+                value="META-INF/populateDB.sql" />
+            -->
+
+        </properties>
+
+    </persistence-unit>
+
+
+    <!-- <persistence-unit name="LandUse_EE" transaction-type="RESOURCE_LOCAL">
+        <!- Hibernate's own Persistence bootstrapper is fine without this, but Spring's
+        LocalContainerEntityManagerFactoryBean requires it. -> <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <non-jta-data-source>jdbc/LandUse</non-jta-data-source> <properties> <property
+        name="eclipselink.logging.level" value="WARNING" /> </properties> </persistence-unit> -->
+
+</persistence>
