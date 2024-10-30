@@ -12,13 +12,14 @@ import java.util.List;
 @Service
 public class RegistrationService {
 
-   //   @Autowired
+//      @Autowired
    private CourseService courseService;
    //   @Autowired
    private StudentService studentService;
 //      @Autowired
    private ClassService classService;
 
+   @Autowired
    public RegistrationService(StudentService studentService,
                               ClassService classService, CourseService courseService) {
 
@@ -27,6 +28,10 @@ public class RegistrationService {
       this.courseService = courseService;
 
       int count = studentService.getAllStudents().size();
+   }
+
+   public RegistrationService() {
+
    }
 
 

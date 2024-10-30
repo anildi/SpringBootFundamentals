@@ -11,10 +11,11 @@ import ttl.larku.domain.Track;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
-public class TrackServiceMockTest {
+public class TrackServiceUnitTest {
 
    @Mock
    private BaseDAO<Track> trackDAO;
@@ -41,7 +42,7 @@ public class TrackServiceMockTest {
       String title = "The Moon in August";
       Track track = Track.title(title).build();
 
-      Mockito.when(trackDAO.create(any())).thenReturn(track);
+      Mockito.when(trackDAO.create(any())).then(returnsFirstArg());
 
       Track newTrack = trackService.createTrack(title);
 

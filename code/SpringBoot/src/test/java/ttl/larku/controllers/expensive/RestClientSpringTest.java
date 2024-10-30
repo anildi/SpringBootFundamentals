@@ -70,6 +70,23 @@ public class RestClientSpringTest {
     }
 
     public Student getStudentWithId(int id) throws IOException {
+//        ResponseEntity<Student> r1 = restClient.get()
+//              .uri("/adminrest/student/{id}", id)
+//              .retrieve()
+//              .toEntity(Student.class);
+//
+//        Student s = r1.getBody();
+//
+//        //This is the Spring REST mechanism to create a paramterized type
+//        ParameterizedTypeReference<List<Student>> ptr1 = new ParameterizedTypeReference<List<Student>>() {
+//        };
+//
+//        ResponseEntity<List<Student>> r2 = restClient.get()
+//              .uri("/adminrest/student/")
+//              .retrieve()
+//              .toEntity(ptr1);
+
+
         //This is the Spring REST mechanism to create a paramterized type
         ParameterizedTypeReference<RestResultWrapper<Student>>
                 ptr = new ParameterizedTypeReference<RestResultWrapper<Student>>() {
