@@ -1,0 +1,18 @@
+<header th:fragment="header">
+
+    <div th:if="${searchResult != null}">
+        <h2><span
+                th:text="'Results: ' + ${searchResult.size()} + ' of: ' + ${totalElements} + ', Page: ' + ${page} + ' of ' + ${totalPages}"/>
+        </h2>
+
+        <div>
+            <form th:action="@{''}" method="get">
+                Search Params: <input type="text" id="searchParams" name="searchParams" th:value="${searchParams}"/>
+                Page: <input type="text" id="page" name="page" th:value="${page}"/>
+                PageSize: <input type="text" id="pageSize" name="pageSize" th:value="${pageSize}"/>
+                <input type="submit" value="Search"/>
+            </form>
+        </div>
+    </div>
+    <p/>
+</header>

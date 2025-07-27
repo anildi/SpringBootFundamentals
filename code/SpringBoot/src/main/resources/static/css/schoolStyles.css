@@ -1,0 +1,68 @@
+body {
+    background-color: aqua;
+}
+
+.table {
+    display: table;
+}
+
+.fillit {
+    width: 98%;
+}
+
+.blank_row {
+    height: 15px !important; /* overwrites any other rules */
+    /*background-color: #FFFFFF;*/
+}
+
+.tableRow {
+    display: table-row;
+}
+
+.tableCell {
+    display: table-cell;
+    padding: 0px 5px 0px 0px;
+    margin: 2px 2px 2px 2px;
+}
+
+.normal {
+    color: blue;
+}
+
+input.error {
+    color: red;
+}
+
+.phoneNumber {
+    color: blue;
+}
+
+
+#myForm {
+    /*float : left;*/
+    /*width : 300px;*/
+}
+
+#myForm h2 {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+#listDiv {
+    /*float : left;*/
+    /*width : 300px;*/
+    margin-left: 50px;
+}
+
+#listDiv h2 {
+    margin: 0;
+    padding: 0;
+}
+
+a.visited {
+    color: #FF2099;
+}
+
+a.link {
+    color: blue;
+}

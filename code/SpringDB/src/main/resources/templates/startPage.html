@@ -1,0 +1,69 @@
+<!DOCTYPE html >
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link type="text/css" rel="stylesheet" media="all" href=# th:href="@{/css/larkU.css}">
+    <title>LarkU</title>
+</head>
+<body>
+<div th:replace="~{fragments/larkUHeader :: header}"></div>
+<table>
+    <tr>
+        <td><a href=# th:href="@{/admin/getStudents}">Get
+            all students</a></td>
+    </tr>
+    <tr>
+        <td>
+            <form method="get" th:action="@{/admin/getStudent}">
+                <input type="text" name="id"/> <input type="submit" value="Get Student With Id"/>
+            </form>
+        </td>
+    </tr>
+
+    <tr>
+        <td><a th:href="@{/admin/getCourses}">Get All Courses</a></td>
+    </tr>
+
+    <tr>
+        <td><a th:href="@{/registration/getAllClasses}">Get All Classes</a></td>
+    </tr>
+
+    <tr>
+        <td><a th:href="@{admin/showStudents}">
+            Show Students Restfully</a></td>
+    </tr>
+</table>
+<!--<div sec:authorize="hasRole('ADMIN')">-->
+<div>
+    <h2>Admin commands</h2>
+    <table>
+        <tr>
+            <td><a th:href="@{/admin/addStudent}">Add
+                a student</a></td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/admin/addCourse}">Add Course</a></td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/registration/addClass}">Add Class</a></td>
+        </tr>
+
+        <tr>
+            <td><a th:href="@{/registration/registerStudentForClass}">
+                Register Student For Class</a></td>
+        </tr>
+        <tr>
+        <td><a th:href="@{/admin/addStudentsAjax}">
+            Add Students Restfully</a></td>
+        </tr>
+    </table>
+</div>
+
+<p>
+    <a th:href="@{/jpql}">Run Jpql Queries</a>
+
+<br/>
+</body>
+</html>

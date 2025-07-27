@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>LarkU_SpringMVC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link type="text/css" rel="stylesheet" media="all" href=# th:href="@{/css/schoolStyles.css}">
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.2.js}"></script>
+    <script language="javascript">
+        var visitedLinkColor;
+
+        function doShowStudent(event) {
+            event.preventDefault();
+
+            event = event || window.event;
+            var href = $(this).attr('href');
+            //console.log("href = " + href);
+
+            var that = this;
+            $.ajax({
+                url: href,
+                dataType: "json",
+                success: function (rawdata) {
+                    let data = rawdata.entity;
+                    //console.log("data = " + data);
+                    var i = 10;
+                    var elems = $(data);
+                    $('#studentName').text(data.name);
+                    $('#studentId').text(data.id);
+                    $('#studentPhoneNumber').text(data.phoneNumber);
+                    $('#studentStatus').text(data.status);
+                    $('#studentDOB').text(data.dob);
+                    var classes = "";
+                    for (var i = 0; i < data.classes.length; i++) {
+                        classes += data.classes[i].course.code;
+                        if (i + 1 < data.classes.length) {
+                            classes += ",";
+                        }
+                    }
+                    $('#studentClasses').text(classes);
+                    var newContent = "<p>" + JSON.stringify(elems) + "</p>";
+                    var divToChange = $('#studentInfoDiv');
+                    if ($('#studentInfo').length) {
+                        $('#studentInfo').remove();
+                    }
+                    //$(newContent).appendTo("#studentInfoDiv");
+
+                    $(that).removeClass("link");
+                    $(that).addClass("visited");
+
+                    //$(that).css("color", visitedLinkColor);
+                },
+
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log("textStatus is " + textStatus + ", error is "
+                        + errorThrown);
+                }
+            });
+
+            return true;
+        }
+
+        $(document).ready(function () {
+            $('#allStudentsTable a').click(doShowStudent);
+        });
+    </script>
+</head>
+<body>
+<h2>All Students</h2>
+<table id="allStudentsTable" border="1">
+    <tr>
+        <td>#</td>
+        <td>Id</td>
+        <td>Name</td>
+    </tr>
+        <tr th:each="student, loopStatus : ${students}">
+            <td>[[${loopStatus.index}]]</td>
+            <!--                   th:href="@{/adminrest/student/} + ${student.id}">[[${student.id}]]</a></td> -->
+            <!--  In the @URL exression below, the first {sid} is a place holder.
+                  The second sid(sid = ...) substitutes the value of student.id at the location
+                  of {sid} in the url.  Beware of all the opening and closing curlys and parens -->
+            <td><a class="link"
+            th:href="@{/adminrest/student/{sid}(sid=${student.id})}">[[${student.id}]]</a></td>
+            <td>[[${student.name}]]</td>
+        </tr>
+</table>
+
+<div id="studentInfoDiv">
+    <h2>Selected Student Info</h2>
+    <table id="studentInfoTable" border="1" >
+        <tr>
+            <td>Name</td>
+            <td id="studentName"></td>
+        </tr>
+        <tr>
+            <td>Id</td>
+            <td id="studentId"></td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td id="studentPhoneNumber"></td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td id="studentStatus"></td>
+        </tr>
+        <tr>
+            <td>DOB</td>
+            <td id="studentDOB"></td>
+        </tr>
+        <tr>
+            <td>Classes</td>
+            <td id="studentClasses"></td>
+        </tr>
+    </table>
+</div>
+<br/>
+<a href="/">Home</a>
+</body>
+</html>

@@ -1,0 +1,6 @@
+If you are using Thymeleaf as a your html templating library,
+*and* you want some very quick and dirty, basic paging controls,
+you can add this file to your Thymeleaf fragments directory
+and include it in whatever page you want the Paging on.
+
+You may have to fiddle around to get things to work correctly.

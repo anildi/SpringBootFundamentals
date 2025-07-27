@@ -1,0 +1,16 @@
+body {
+    background-color: #b0c4de;
+}
+
+.fillit {
+    width: 100%;
+}
+
+.blank_row {
+    height: 15px !important; /* overwrites any other rules */
+    /*background-color: #FFFFFF;*/
+}
+
+.error {
+    color: red
+}

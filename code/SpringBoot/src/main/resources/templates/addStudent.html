@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link type="text/css" rel="stylesheet" media="all"
+          th:href="@{/css/larkU.css}">
+    <title>LarkU</title>
+</head>
+<body>
+<div th:replace="~{fragments/larkUHeader :: header}"></div>
+<h2>Add a Student</h2>
+<form th:action="@{/admin/addStudent}" method="post" th:object="${student}">
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}" placeholder="string"/></td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td><input type="text" th:field="*{phoneNumber}" placeholder="string"/></td>
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td><input style="width: 95%" type="date" th:field="*{dob}" placeholder="yyyy-MM-dd"/></td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            <td>
+            <select class="fillit" th:field="*{status}">
+                <option th:each="status : ${student.statusList}"
+                        th:value="${status}"
+                        th:text="${status}">FULL_TIME
+                </option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Add Student"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

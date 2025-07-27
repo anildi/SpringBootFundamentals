@@ -1,0 +1,54 @@
+**/target/
+**/bin/
+**/build/
+**/out/
+
+#mvn, gradle
+!.mvn/wrapper/maven-wrapper.jar
+**/.gradle
+
+#vi swap files
+*.swp
+hs_*
+
+### Emacs ######
+**/*~
+**/*#
+**/#*
+
+### STS ###
+.apt_generated
+**/.classpath
+**/.factorypath
+**/.project
+**/.settings
+**/.springBeans
+**/.sts4-cache
+**/.metadata
+
+### IntelliJ IDEA ###
+**/.idea
+**/*.iws
+**/*.iml
+**/*.ipr
+
+### NetBeans ###
+**/nbproject
+**/nbbuild/
+**/dist/
+**/nbdist/
+**/.nb-gradle/
+**/build/
+
+**/LarkUDB/
+**/derby.log
+
+#misc
+**/.attach*
+**/.hprof
+**/.metadata/
+**/loginfofile
+
+### VS Code ###
+.vscode/
+

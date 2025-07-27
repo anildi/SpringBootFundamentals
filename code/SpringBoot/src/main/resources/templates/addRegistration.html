@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link type="text/css" rel="stylesheet" media="all" href=# th:href="@{/css/larkU.css}">
+    <title>LarkU</title>
+</head>
+<body>
+<div th:replace="~{fragments/larkUHeader :: header}"></div>
+<h2> Register a student for a class </h2>
+<form th:action="@{/registration/registerStudentForClass}" method="post">
+    <table border="1">
+        <tr>
+            <td>Student</td>
+            <td>Scheduled Class</td>
+        </tr>
+        <tr>
+            <!-- <td><select style="width: 100%" name="studentId"> -->
+            <td>
+                <select class="fillit" name="studentId">
+                    <option th:each="student : ${students}"
+                            th:value="${student.id}"
+                            th:text="${student.name}">
+                    </option>
+                </select>
+            </td>
+
+            <td>
+                <select class="fillit" name="classId">
+                    <option th:each="sClass : ${classes}"
+                            th:value="${sClass.id}"
+                            th:text="${sClass.course.code} + ' - '  + ${sClass.startDate} + ' - ' + ${sClass.endDate}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="registerStudent" value="Register Student"/></td>
+        </tr>
+    </table>
+</form>
+<br/>
+<a href="/">Home</a>
+</body>
+</html>

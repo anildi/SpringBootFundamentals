@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link type="text/css" rel="stylesheet" media="all" th:href="@{/css/larkU.css}">
+    <title>LarkU</title>
+</head>
+<body>
+<div th:replace="~{fragments/jpqlHeader :: header}"></div>
+<div class="jpqldiv">
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <form method="post" th:action="@{/jpql}">
+                    <input class="longtxtfield" type="text" th:value="${session.jpqlstr}" name="jpql"/>
+                    <input type="submit" value="Run JPQL"/>
+                    <br/>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<div>
+    <h2>Query Results: <span th:text="${resultSize}"/></h2>
+    <table cellspacing="1" border="1">
+        <thead>
+        <tr>
+            <th th:each="header: ${headers}" class="column-title" th:text="${header}"/>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="row: ${data}" id="tablerow">
+            <td th:each="col: ${row.value}" th:text="${col}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<p>Message: <span th:text="${message}"/></p>
+<div th:if="${message} != null">
+    <div class="errors" th:each="error : ${errors}">
+        <h2>Awful Stuff Happened</h2>
+        <div th:text="${error}"></div>
+
+        <div>
+            <span>Exception Message:</span>
+            <span th:text="${message}"></span>
+        </div>
+        <br/>
+        <div>Check Logs for More Info</div>
+    </div>
+</div>
+
+<br/> <a th:href="@{/}">Home</a>
+</body>
+</html>

@@ -1,0 +1,29 @@
+body {
+    background-color: #b0c4de;
+}
+
+.fillit {
+    width: 100%;
+}
+
+.blank_row {
+    height: 15px !important; /* overwrites any other rules */
+    /*background-color: #FFFFFF;*/
+}
+
+.error {
+    color: red
+}
+
+.longtxtfield {
+    width: 90%;
+}
+
+.shorttxtfield {
+    float: right;
+}
+
+.right-justfied {
+    width: 100%;
+    float: right;
+}

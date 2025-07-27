@@ -1,0 +1,45 @@
+== Introduction
+LarkU REST API documentation
+
+== Students API
+Collection of CRUD API endpoints used to manipulate students 
+
+=== Get All Students
+Get all Students
+
+==== Sample Request
+include::{snippets}/students/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/students/http-response.adoc[]
+
+=== Get Student By Id
+Get a specific Student by Id
+
+==== Sample Request
+include::{snippets}/student/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/student/http-response.adoc[]
+
+==== CURL sample
+include::{snippets}/student/curl-request.adoc[]
+
+=== Get Student By Id Error Response
+Error Response on Student Not found
+
+==== Sample Response
+include::{snippets}/oneStudentBadId/http-response.adoc[]
+
+
+=== Add a Student
+Add a student
+
+==== Sample Request
+include::{snippets}/addStudent/http-request.adoc[]
+
+==== Sample Response
+include::{snippets}/addStudent/http-response.adoc[]
+
+==== CURL sample
+include::{snippets}/addStudent/curl-request.adoc[]

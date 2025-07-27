@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link type="text/css" rel="stylesheet" media="all" th:href="@{/css/larkU.css}">
+    <title>Error Page</title>
+</head>
+<body>
+<div th:replace="~{fragments/errorHeader :: header}"></div>
+<h2>Wevy Bad Stuff Happened</h2>
+<div>
+    <span>Exception Message:</span>
+    <span th:text="${message}"></span>
+</div>
+<br/>
+<div>Check Logs for More Info</div>
+
+<p> <a th:href="@{/jpql}">Jpql</a></p>
+<p></p> <a th:href="@{/}">Home</a></p>
+</body>
+</html>
