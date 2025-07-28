@@ -3,11 +3,14 @@ package ttl.larku.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.dao.inmemory.InMemoryStudentDAO;
 import ttl.larku.domain.Student;
 import ttl.larku.domain.Student.Status;
 
+@Service
 public class StudentService {
 
     List<String> stuff = new ArrayList<>();
@@ -16,7 +19,8 @@ public class StudentService {
     private BaseDAO<Student> studentDAO;
 
     public StudentService() {
-        studentDAO = new InMemoryStudentDAO();
+//        studentDAO = new InMemoryStudentDAO();
+        int stop = 0;
     }
 
     public Student createStudent(String name, String phoneNumber, Status status) {
@@ -52,6 +56,7 @@ public class StudentService {
         return studentDAO;
     }
 
+    @Autowired
     public void setStudentDAO(BaseDAO<Student> studentDAO) {
         this.studentDAO = studentDAO;
     }

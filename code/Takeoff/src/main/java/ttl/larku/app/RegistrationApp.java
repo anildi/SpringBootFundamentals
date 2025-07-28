@@ -1,5 +1,6 @@
 package ttl.larku.app;
 
+import ttl.larku.dao.DAOFactory;
 import ttl.larku.domain.Course;
 import ttl.larku.domain.Student;
 import ttl.larku.service.CourseService;
@@ -11,7 +12,8 @@ public class RegistrationApp {
 
     private int value;
 
-    private StudentService ss = new StudentService();
+//    private StudentService ss = new StudentService();
+    private StudentService ss = DAOFactory.studentService();
 
     public static void main(String[] args) {
         RegistrationApp ra = new RegistrationApp();

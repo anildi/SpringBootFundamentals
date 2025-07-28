@@ -6,13 +6,19 @@ import java.util.List;
 import java.util.Map;
 
 import java.util.Optional;
+import org.springframework.stereotype.Repository;
 import ttl.larku.dao.BaseDAO;
 import ttl.larku.domain.Student;
 
+@Repository
 public class InMemoryStudentDAO implements BaseDAO<Student> {
 
     private Map<Integer, Student> students = new HashMap<Integer, Student>();
     private static int nextId = 0;
+
+    public InMemoryStudentDAO() {
+        int stop = 0;
+    }
 
     public boolean update(Student updateObject) {
         return students.replace(updateObject.getId(), updateObject) != null;

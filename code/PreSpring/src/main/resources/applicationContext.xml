@@ -8,4 +8,10 @@
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <bean id="inMemoryStudentDAO" class="ttl.larku.dao.inmemory.InMemoryStudentDAO"/>
+
+    <bean id="studentService" class="ttl.larku.service.StudentService" lazy-init="true">
+        <property name="studentDAO" ref="inMemoryStudentDAO"/>
+    </bean>
+
 </beans>

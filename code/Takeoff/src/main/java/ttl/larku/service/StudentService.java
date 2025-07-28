@@ -23,7 +23,7 @@ public class StudentService {
    public StudentService() {
 //      studentDAO = new InMemoryStudentDAO();
 //      studentDAO = new JPAStudentDAO();
-      studentDAO = DAOFactory.studentDAO();
+//      studentDAO = DAOFactory.studentDAO();
    }
 
    public Student createStudent(String name, String phoneNumber, Status status) {
@@ -58,6 +58,10 @@ public class StudentService {
 //    public JPAStudentDAO getStudentDAO() {
    public StudentDAO getStudentDAO() {
       return studentDAO;
+   }
+
+   public void setStudentDAO(StudentDAO studentDAO) {
+      this.studentDAO = studentDAO;
    }
 
 }

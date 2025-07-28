@@ -7,6 +7,7 @@ import ttl.larku.dao.inmemory.InMemoryStudentDAO;
 import ttl.larku.dao.inmemory.StudentDAO;
 import ttl.larku.dao.jpa.JPAStudentDAO;
 import ttl.larku.domain.Student;
+import ttl.larku.service.StudentService;
 
 public class DAOFactory {
 
@@ -41,6 +42,15 @@ public class DAOFactory {
          default -> throw new RuntimeException("Unknow profile: " + profile);
       };
       return result;
+   }
+
+   public static StudentService studentService() {
+      StudentService ss = new StudentService();
+
+      var dao = studentDAO();
+      ss.setStudentDAO(dao);
+
+      return ss;
    }
 
    public static StudentDAO oldstudentDAO() {
