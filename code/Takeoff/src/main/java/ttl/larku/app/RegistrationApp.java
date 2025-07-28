@@ -9,7 +9,9 @@ import java.util.List;
 
 public class RegistrationApp {
 
-    int value;
+    private int value;
+
+    private StudentService ss = new StudentService();
 
     public static void main(String[] args) {
         RegistrationApp ra = new RegistrationApp();
@@ -20,7 +22,6 @@ public class RegistrationApp {
 
 
     public void postRequestToAddAStudent() {
-        StudentService ss = new StudentService();
         ss.createStudent("New One", "282 484 9944", Student.Status.FULL_TIME);
 
         List<Student> students = ss.getAllStudents();
@@ -28,7 +29,7 @@ public class RegistrationApp {
     }
 
     public void getRequestForAllStudents() {
-        StudentService ss = new StudentService();
+//        StudentService ss = new StudentService();
         List<Student> students = ss.getAllStudents();
         System.out.println("All Students: " + students.size());
         students.forEach(System.out::println);

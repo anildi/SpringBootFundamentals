@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import ttl.larku.dao.inmemory.StudentDAO;
 import ttl.larku.domain.Student;
 
-public class JPAStudentDAO {
+public class JPAStudentDAO implements StudentDAO {
 
     private Map<Integer, Student> students = new HashMap<Integer, Student>();
     private static AtomicInteger nextId = new AtomicInteger(0);
