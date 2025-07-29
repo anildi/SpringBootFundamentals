@@ -37,6 +37,15 @@ class MyRunner implements CommandLineRunner {
    public void run(String... args) throws Exception {
       System.out.println("Here we go");
 
+      var input = List.of(
+            new Student("Joe", "383 939 93393", Student.Status.HIBERNATING),
+            new Student("Franny", "84949 939 93393", Student.Status.PART_TIME),
+            new Student("Sameer", "383 939 93393", Student.Status.FULL_TIME),
+            new Student("Rachna", "383 939 93393", Student.Status.FULL_TIME)
+            );
+
+      input.forEach(studentService::createStudent);
+
       List<Student> students = studentService.getAllStudents();
 
       System.out.println("students: " + students);
