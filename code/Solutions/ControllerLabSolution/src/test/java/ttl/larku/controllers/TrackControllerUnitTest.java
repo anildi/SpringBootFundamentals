@@ -21,14 +21,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(MockitoExtension.class)
 public class TrackControllerUnitTest {
 
-    @InjectMocks
-    private TrackController controller;
-
     @Mock
     private TrackService trackService;
 
     @Mock
     private UriCreator uriCreator;
+
+    @InjectMocks
+    private TrackController controller;
 
     List<Track> allTracks = new TrackerTestDataConfig().tracks();
 

@@ -86,7 +86,8 @@ public class StudentController {
       }
 
       //return ResponseEntity.noContent().build();
-      return ResponseEntity.ok(student);
+      var re =  ResponseEntity.status(HttpStatus.OK).header("MYHeader", "MYValue").body(student);
+      return re;
    }
 
 }

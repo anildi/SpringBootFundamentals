@@ -7,7 +7,7 @@ import ttl.larku.service.StudentService;
 /**
  * @author whynot
  */
-public class SomeController {
+public class SomeOtherService {
 
     @MyInject
     private StudentService studentService;

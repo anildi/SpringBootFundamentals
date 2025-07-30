@@ -138,8 +138,8 @@ public class TrackController {
      */
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateStudentPartial(@PathVariable("id") int id, @RequestBody Map<String, Object> props) {
-//        regService.getStudentService().updateStudentPartial(id, props);
-        trackService.updateTrackPartialBeanWrapper(id, props);
+        trackService.updateTrackPartial(id, props);
+//        trackService.updateTrackPartialBeanWrapper(id, props);
         return ResponseEntity.noContent().build();
 
     }

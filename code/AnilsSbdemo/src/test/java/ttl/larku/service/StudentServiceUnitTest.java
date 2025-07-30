@@ -67,13 +67,13 @@ public class StudentServiceUnitTest {
         Student s1 = new Student(name1, phoneNumber1, dob1, Status.FULL_TIME);
         s1.setId(1);
 
-        Optional<Student> student1 = Optional.of(s1);
+//        Optional<Student> student1 = Optional.of(s1);
 
         //Set up Mocks
         Mockito.when(studentDAO.delete(s1.getId())).thenReturn(true);
 
         //Call and JUnit asserts
-        boolean result = studentService.deleteStudent(student1.get().getId());
+        boolean result = studentService.deleteStudent(s1.getId());
         assertTrue(result);
 
         //Mockito verification
@@ -82,6 +82,7 @@ public class StudentServiceUnitTest {
 
     @Test
     public void testDeleteNonExistentStudent() {
+        Mockito.when(studentDAO.delete(9999)).thenReturn(false);
         //Non existent Id
         boolean result = studentService.deleteStudent(9999);
         assertFalse(result);
